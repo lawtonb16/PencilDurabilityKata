@@ -1,6 +1,7 @@
 const assert = require('assert');
 // Adjust the require path if your implementation exports differently
-const Pencil = require('./PencilCreation');
+const Pencil = require('./PencilCreation').createPencil;
+/** @type {typeof import("./PencilCreation").createPencil} */
 
 function tryRequire() {
 	try {
@@ -10,6 +11,7 @@ function tryRequire() {
 		process.exit(1);
 	}
 }
+
 
 const P = tryRequire();
 
