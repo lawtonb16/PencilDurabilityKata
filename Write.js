@@ -1,5 +1,5 @@
-const { createPencil } = require('./PencilCreation').createPencil;
-const { reducePointDurability } = require('./pointdegradation').reducePointDurability;
+const { createPencil } = require('./PencilCreation');
+const { reduceDurability } = require('./Durability');
 
 function ensurePencil(pencilOrOptions) {
   if (pencilOrOptions && typeof pencilOrOptions.pointDurability === 'number') {
@@ -30,7 +30,8 @@ function write(pencilOrExisting, text, page = '') {
     }
 
     written.push(char);
-    remainingDurability = reducePointDurability(remainingDurability, char);
+    reduceDurability(pencil, char, 'write');
+    remainingDurability = pencil.pointDurability;
   }
 
   pencil.pointDurability = remainingDurability;
